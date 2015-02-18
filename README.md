@@ -3,5 +3,5 @@ Jeeves was created to be a cli command line solution. The concept of this is to 
 
 ***Legacy Application Available***
 
-IF you are interested in using the legacy v0.14 of Jeeves feel free to try it out. 
+If you are interested in using the legacy v0.14 of Jeeves feel free to try it out. 
 
