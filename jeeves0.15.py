@@ -24,19 +24,41 @@ def save_Files():
        json.dump(taskTags,save, sort_keys = True)
 
 def list_Tasks():
-    for x in taskList: print x
+    for x in taskList:
+        for y in taskList[x]:
+            print taskList[x]['task']
 
+def create_Task():
+    a = raw_input('Enter the task: ')
+    x = 0
+    if a[0] == '!':
+        priority = True
+        print 'priority task'
+        a = a[1:]
+    else:
+        priority = False
+        print 'normal task'
+    for x in taskList:
+        x += 1
+    taskList[x] = {
+        'task':a,
+        'priority':priority
+        }
+    save_Files()
+    print 'Task:%s has been created' % taskList[x]['value']
+    
 def create_Tags():
+    for x in taskTags:
+        print taskTags[x]
     a = raw_input('Enter a Tag: ')
     hasha = '#' + a
-    taskTags[hasha] = a
-    save_Files()
+    if hasha in taskTags:
+        print 'you have selected: %s' % taskTags[hasha]
+    else:
+        taskTags[hasha] = a
+        print "%s not found. Tag: %s created" % (hasha,hasha)
+        save_Files()
     
 load_Files()
+create_Task()
 list_Tasks()
-print "tags: %s" % taskTags
-create_Tags()
-print taskTags
-
-
-
