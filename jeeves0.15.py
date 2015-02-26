@@ -34,18 +34,19 @@ def create_Task():
     if a[0] == '!':
         priority = True
         print 'priority task'
-        #a = a[1:]
+        a = a[1:]
     else:
         priority = False
         print 'normal task'
     while x in taskList:
         x += 1
-    taskList[x] = {
-        'task':a,
+        print x
+    taskList[x] = { 
+        'task':a, 
         'priority':priority
         }
-    save_Files()
     print "Task:'%s' has been created" % taskList[x]['task']
+   
     
 def create_Tags():
     for x in taskTags:
@@ -57,8 +58,11 @@ def create_Tags():
     else:
         taskTags[hasha] = a
         print "%s not found. Tag: %s created" % (hasha,hasha)
-        save_Files()
+
     
 load_Files()
 create_Task()
 list_Tasks()
+create_Task()
+print taskList
+Save_Files()
