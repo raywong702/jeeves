@@ -30,22 +30,22 @@ def list_Tasks():
 
 def create_Task():
     a = raw_input('Enter the task: ')
-    x = 0
+    x = int(0)
     if a[0] == '!':
         priority = True
         print 'priority task'
-        a = a[1:]
+        #a = a[1:]
     else:
         priority = False
         print 'normal task'
-    for x in taskList:
+    while x in taskList:
         x += 1
     taskList[x] = {
         'task':a,
         'priority':priority
         }
     save_Files()
-    print 'Task:%s has been created' % taskList[x]['value']
+    print "Task:'%s' has been created" % taskList[x]['task']
     
 def create_Tags():
     for x in taskTags:
