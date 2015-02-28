@@ -1,6 +1,6 @@
-import tag
+import Tag
 
-class tag_list(object):
+class TagList(object):
 
     def __init__(self, tag = None):
         self.tag_list = []

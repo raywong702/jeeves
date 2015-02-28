@@ -1,13 +1,13 @@
-import tag
-import tag_list
-import task
+import Tag
+import TagList
+import Task
 
 def main():
-    house = tag.tag("house", 3)
-    master_tag_list = tag_list.tag_list(house)
+    house = Tag.Tag("house", 3)
+    master_tag_list = TagList.TagList(house)
 #    print(master_tag_list)
 
-    dishes = task.task(0, "do the dishes #house #chores", master_tag_list)
+    dishes = Task.Task(0, "do the dishes #house #chores", master_tag_list)
 
     print("initialize with dishes and chores")
     print(dishes)
@@ -24,7 +24,7 @@ def main():
     print("remove a b c d")
     print(dishes)
 
-    threat_level_midnight = tag.tag("threat_level_midnight", 5)
+    threat_level_midnight = Tag.Tag("threat_level_midnight", 5)
     master_tag_list.append(threat_level_midnight)
     print()
     print("add threat_level_midnight to master_tag_list")

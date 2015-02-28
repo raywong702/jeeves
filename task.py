@@ -1,14 +1,14 @@
-import tag
-import tag_list
+import Tag
+import TagList
 
-class task(object):
+class Task(object):
 
     def __init__(self, tid, desc, master_tag_list):
         self.tid = tid
         self.desc = desc
         self.master_tag_list = master_tag_list
         self.priority = 0
-        self.tags = tag_list.tag_list()
+        self.tags = TagList.TagList()
         self.update(self.find_hash_tags(desc)) # update tags, master, priority
 
     def __str__(self):
@@ -22,7 +22,7 @@ class task(object):
     def add_tags(self, tags):
         t_list = []
         for tag_name in tags.split():
-            t = tag.tag(tag_name)
+            t = Tag.Tag(tag_name)
             if self.master_tag_list.exists(t):
                 t = self.master_tag_list.get_tag(tag_name)
             t_list.append(t)
@@ -31,7 +31,7 @@ class task(object):
     # takes in a sentence and removes the tagified words
     def remove_tags(self, tags):
         for tag_name in tags.split():
-            self.tags.pop(tag.tag(tag_name))
+            self.tags.pop(Tag.Tag(tag_name))
         self.priority = self.tags.get_max_priority()
 
     def update(self, t_list):
@@ -47,7 +47,7 @@ class task(object):
         hash_tags = []
         for word in s.split():
             if word[0] == "#":
-                t = tag.tag(word[1:])
+                t = Tag.Tag(word[1:])
                 hash_tags.append(t)
         return hash_tags
 
