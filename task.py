@@ -11,7 +11,7 @@ class Task(object):
         self.priority_flag = False
         self.tags = TagList.TagList()
         self.update(self.find_hash_tags(desc)) # update tags, master, priority
-        self.check_shebang()
+        self.check_bang()
 
     def __str__(self):
         s = ["tid: {}\n".format(self.tid),
@@ -57,14 +57,14 @@ class Task(object):
                 hash_tags.append(t)
         return hash_tags
 
-    def check_shebang(self):
+    def check_bang(self):
         if self.desc[0] == "!":
             self.priority_flag = True
             self.priority = 10
 
-    def shebangify(self):
+    def bangify(self):
         self.desc = "!" + self.desc
-        self.check_shebang()
+        self.check_bang()
 
 if __name__ == "__main__":
     pass

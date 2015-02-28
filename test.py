@@ -54,7 +54,7 @@ def main02():
     repair = Task.Task(1, "repair the shelf #house #repair", master_tag_list)
     print(repair)
     print("*" * 10)
-    repair.shebangify()
+    repair.bangify()
     print(repair)
     print(master_tag_list)
 
