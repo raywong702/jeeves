@@ -31,8 +31,7 @@ class task(object):
     # takes in a sentence and removes the tagified words
     def remove_tags(self, tags):
         for tag_name in tags.split():
-            t = tag.tag(tag_name)
-            self.tags.pop(t)
+            self.tags.pop(tag.tag(tag_name))
         self.priority = self.tags.get_max_priority()
 
     def update(self, t_list):
