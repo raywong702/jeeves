@@ -13,13 +13,11 @@ class task(object):
 
 
     def __str__(self):
-        return """tid: {}
-desc: {}
-priority: {}
-tags: {}""".format(self.tid,
-                       self.desc,
-                       self.priority,
-                       self.tags)
+        s = ["tid: {}\n".format(self.tid),
+             "desc: {}\n".format(self.desc),
+             "priority: {}\n".format(self.priority),
+             "tags: {}".format(self.tags)]
+        return "".join(s)
 
 
     # takes in a sentence and tagifys the words
