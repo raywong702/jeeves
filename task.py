@@ -7,9 +7,9 @@ class task(object):
         self.tid = tid
         self.desc = desc
         self.master_tag_list = master_tag_list
+        self.priority = 0
         self.tags = tag_list.tag_list()
-        self.update(self.find_hash_tags(desc)) # this will update tags
-        self.priority = self.tags.get_max_priority()
+        self.update(self.find_hash_tags(desc)) # update tags, master, priority
 
     def __str__(self):
         s = ["tid: {}\n".format(self.tid),
