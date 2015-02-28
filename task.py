@@ -1,7 +1,7 @@
 import tag
 import tag_list
 
-class task:
+class task(object):
 
     def __init__(self, tid, desc, master_tag_list):
         self.tid = tid

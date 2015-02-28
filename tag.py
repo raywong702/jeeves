@@ -1,4 +1,4 @@
-class tag:
+class tag(object):
 
     def __init__(self, tag, priority = 0):
         self.name = tag
