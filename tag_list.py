@@ -18,6 +18,11 @@ class tag_list(object):
         if tag != None:
             self.tag_list.append(tag)
 
+    def pop(self, tag):
+        for index, t in enumerate(self.tag_list):
+            if tag.name == t.name:
+                return self.tag_list.pop(index)
+
     def exists(self, tag):
         for t in self.tag_list:
             if tag.name == t.name:

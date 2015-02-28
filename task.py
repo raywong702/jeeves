@@ -8,9 +8,8 @@ class task(object):
         self.desc = desc
         self.master_tag_list = master_tag_list
         self.tags = tag_list.tag_list()
-        self.find_hash_tags(desc) # this will update tags
+        self.update(self.find_hash_tags(desc)) # this will update tags
         self.priority = self.tags.get_max_priority()
-
 
     def __str__(self):
         s = ["tid: {}\n".format(self.tid),
@@ -19,28 +18,39 @@ class task(object):
              "tags: {}".format(self.tags)]
         return "".join(s)
 
-
     # takes in a sentence and tagifys the words
     def add_tags(self, tags):
+        t_list = []
         for tag_name in tags.split():
-            tag = tag.tag(tag_name)
-            self.tags.append(tag)
-            self.update(tag)
+            t = tag.tag(tag_name)
+            if self.master_tag_list.exists(t):
+                t = self.master_tag_list.get_tag(tag_name)
+            t_list.append(t)
+        self.update(t_list)
 
     # takes in a sentence and removes the tagified words
     def remove_tags(self, tags):
         for tag_name in tags.split():
-            tag = tag.tag(tag_name)
-            self.tags.pop(tag)
+            t = tag.tag(tag_name)
+            self.tags.pop(t)
+        self.priority = self.tags.get_max_priority()
 
-    def update(self, t):
-        if not self.master_tag_list.exists(t):
-            self.master_tag_list.append(t)
-        else:
-            self.tags.append(self.master_tag_list.get_tag(t.name))
+    def update(self, t_list):
+        for t in t_list:
+            if not self.master_tag_list.exists(t):
+                self.master_tag_list.append(t)
+                self.tags.append(t)
+            else:
+                self.tags.append(self.master_tag_list.get_tag(t.name))
+        self.priority = self.tags.get_max_priority()
 
     def find_hash_tags(self, s):
+        hash_tags = []
         for word in s.split():
             if word[0] == "#":
                 t = tag.tag(word[1:])
-                self.update(t)
+                hash_tags.append(t)
+        return hash_tags
+
+if __name__ == "__main__":
+    pass
