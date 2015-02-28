@@ -8,7 +8,7 @@ class tag_list:
 
     def __str__(self):
         ret = "["
-        for index, tag in enumerate(self.tag_list):
+        for tag in self.tag_list:
             ret += str(tag) + ", "
         if ", " in ret:
             ret = ret[:ret.rindex(", ")]
@@ -19,19 +19,19 @@ class tag_list:
             self.tag_list.append(tag)
 
     def exists(self, tag):
-        for index, t in enumerate(self.tag_list):
+        for t in self.tag_list:
             if tag.name == t.name:
                 return True
         return False
 
     def get_tag(self, tag_name):
-        for index, t in enumerate(self.tag_list):
+        for t in self.tag_list:
             if tag_name == t.name:
                 return t
 
     def get_max_priority(self):
         max_priority = 0
-        for index, tag in enumerate(self.tag_list):
+        for tag in self.tag_list:
             if self.exists(tag):
                 if tag.priority > max_priority:
                     max_priority = tag.priority
