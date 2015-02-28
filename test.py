@@ -2,7 +2,7 @@ import Tag
 import TagList
 import Task
 
-def main():
+def main01():
     house = Tag.Tag("house", 3)
     master_tag_list = TagList.TagList(house)
 #    print(master_tag_list)
@@ -43,5 +43,21 @@ def main():
     print("remove threat_level_midnight from dishes")
     print(dishes)
 
+def main02():
+    house = Tag.Tag("house", 3)
+    master_tag_list = TagList.TagList(house)
+    dishes = Task.Task(0, "!do the dishes #house #chores", master_tag_list)
+    print(dishes)
+    print()
+    print(master_tag_list)
+
+    repair = Task.Task(1, "repair the shelf #house #repair", master_tag_list)
+    print(repair)
+    print("*" * 10)
+    repair.shebangify()
+    print(repair)
+    print(master_tag_list)
+
 if __name__ == "__main__":
-    main()
+    #main01()
+    main02()

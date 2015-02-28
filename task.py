@@ -8,8 +8,10 @@ class Task(object):
         self.desc = desc
         self.master_tag_list = master_tag_list
         self.priority = 0
+        self.priority_flag = False
         self.tags = TagList.TagList()
         self.update(self.find_hash_tags(desc)) # update tags, master, priority
+        self.check_shebang()
 
     def __str__(self):
         s = ["tid: {}\n".format(self.tid),
@@ -32,7 +34,7 @@ class Task(object):
     def remove_tags(self, tags):
         for tag_name in tags.split():
             self.tags.pop(Tag.Tag(tag_name))
-        self.priority = self.tags.get_max_priority()
+        self.update_priority()
 
     def update(self, t_list):
         for t in t_list:
@@ -41,7 +43,11 @@ class Task(object):
                 self.tags.append(t)
             else:
                 self.tags.append(self.master_tag_list.get_tag(t.name))
-        self.priority = self.tags.get_max_priority()
+        self.update_priority()
+            
+    def update_priority(self):
+        if not self.priority_flag:
+            self.priority = self.tags.get_max_priority()
 
     def find_hash_tags(self, s):
         hash_tags = []
@@ -50,6 +56,15 @@ class Task(object):
                 t = Tag.Tag(word[1:])
                 hash_tags.append(t)
         return hash_tags
+
+    def check_shebang(self):
+        if self.desc[0] == "!":
+            self.priority_flag = True
+            self.priority = 10
+
+    def shebangify(self):
+        self.desc = "!" + self.desc
+        self.check_shebang()
 
 if __name__ == "__main__":
     pass
